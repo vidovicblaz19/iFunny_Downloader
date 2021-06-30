@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Environment;
 import android.os.IBinder;
+import android.util.Log;
 
 import androidx.annotation.Nullable;
 
@@ -70,7 +71,8 @@ public class iFunnyDownloadService extends Service {
                 if (response.isSuccessful()) {
                     String responseString = response.body();
 
-                    int indexOfUrl = responseString.indexOf("<meta property=\"og:video:url\" content=")+38;
+
+                    int indexOfUrl = responseString.indexOf("data-source=")+12;
                     VideoUrltmp = responseString.substring(indexOfUrl,indexOfUrl+150);
                     VideoUrl = VideoUrltmp.substring(VideoUrltmp.indexOf("\"")+1,VideoUrltmp.indexOf("mp4\"")+3);
 
