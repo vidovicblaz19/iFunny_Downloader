@@ -71,13 +71,19 @@ public class iFunnyDownloadService extends Service {
                 if (response.isSuccessful()) {
                     String responseString = response.body();
 
+                    boolean isVideo = true;
+                    int indexOfUrl = 1000000;
 
-                    int indexOfUrl = responseString.indexOf("data-source=")+12;
+                    indexOfUrl = responseString.indexOf("data-source=")+12;
+
+                    int altpos = responseString.indexOf("data-src=")+9;
+                    if(altpos < indexOfUrl){ indexOfUrl = altpos; isVideo = false; }
+
                     VideoUrltmp = responseString.substring(indexOfUrl,indexOfUrl+150);
-                    VideoUrl = VideoUrltmp.substring(VideoUrltmp.indexOf("\"")+1,VideoUrltmp.indexOf("mp4\"")+3);
+                    VideoUrl = VideoUrltmp.substring(VideoUrltmp.indexOf("\"")+1,VideoUrltmp.indexOf("\"",VideoUrltmp.indexOf("\"")+1));
 
                     //try to download now
-                    beginDownload(VideoUrl);
+                    beginDownload(VideoUrl, isVideo);
                     //mp4load(VideoUrl);
                 }
             }
@@ -91,9 +97,14 @@ public class iFunnyDownloadService extends Service {
         return START_NOT_STICKY;
     }
 
-    private void beginDownload(String videoUrl){
+    private void beginDownload(String videoUrl, boolean isVideo){
         String downloadsPath = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS).getAbsolutePath();
-        File file=new File(downloadsPath,"ifunnyVideo.mp4");
+        File file;
+        if(isVideo) {
+            file = new File(downloadsPath, "ifunnyVideo.mp4");
+        }else{
+            file = new File(downloadsPath, "ifunnyimg.jpg");
+        }
         /*
         Create a DownloadManager.Request with all the information necessary to start the download
          */
