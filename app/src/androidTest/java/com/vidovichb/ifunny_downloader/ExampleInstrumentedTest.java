@@ -1,4 +1,4 @@
-package com.vidovichb.ifunnydownloader;
+package com.vidovichb.ifunny_downloader;
 
 import android.content.Context;
 
@@ -21,7 +21,6 @@ public class ExampleInstrumentedTest {
     public void useAppContext() {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
-
-        assertEquals("com.vidovichb.ifunnydownloader", appContext.getPackageName());
+        assertEquals("com.vidovichb.ifunny_downloader", appContext.getPackageName());
     }
 }

@@ -1,4 +1,4 @@
-package com.vidovichb.ifunnydownloader;
+package com.vidovichb.ifunny_downloader;
 
 import org.junit.Test;
 
