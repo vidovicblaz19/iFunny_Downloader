@@ -5,7 +5,6 @@ Android service for downloading images and videos from iFunny app.
 ## Installation
 
 Use Releases page to download .apk and install it on android device.
-Link to download apk: https://github.com/vidovichb/iFunny_Downloader/releases/download/1.01/ifunnyDownloader.apk 
 
 ## Usage
 
